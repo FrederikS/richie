@@ -1,0 +1,9 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "indent": ["error", 4],
+    "comma-dangle": ["error", "never"],
+    "prefer-template": "warn",
+    "react/prefer-stateless-function": "warn"
+  }
+}
