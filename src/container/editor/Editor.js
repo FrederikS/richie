@@ -4,12 +4,14 @@ import BlockStyleControls, { getBlockStyle } from '../../components/controls/Blo
 import InlineStyleControls from '../../components/controls/InlineStyleControls';
 import styles from './styles.css';
 import '../../styles/editor.global.css';
+import LinkControl from './controls/LinkControl';
+import LinkDecorator from '../../editor/LinkDecorator';
 
 class MyEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editorState: EditorState.createEmpty()
+            editorState: EditorState.createEmpty(LinkDecorator)
         };
 
         this.focus = () => this.refs.editor.focus();
@@ -17,6 +19,7 @@ class MyEditor extends React.Component {
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+        this.toggleLink = (linkEntity) => this._toggleLink(linkEntity);
     }
 
     _handleKeyCommand(command) {
@@ -30,21 +33,26 @@ class MyEditor extends React.Component {
     }
 
     _toggleBlockType(blockType) {
-        this.onChange(
-            RichUtils.toggleBlockType(
-                this.state.editorState,
-                blockType
-            )
-        );
+        this.onChange(RichUtils.toggleBlockType(
+            this.state.editorState,
+            blockType
+        ));
     }
 
     _toggleInlineStyle(inlineStyle) {
-        this.onChange(
-            RichUtils.toggleInlineStyle(
-                this.state.editorState,
-                inlineStyle
-            )
-        );
+        this.onChange(RichUtils.toggleInlineStyle(
+            this.state.editorState,
+            inlineStyle
+        ));
+    }
+
+    _toggleLink(linkEntity) {
+        const { editorState } = this.state;
+        this.onChange(RichUtils.toggleLink(
+            editorState,
+            editorState.getSelection(),
+            linkEntity
+        ));
     }
 
     render() {
@@ -64,6 +72,7 @@ class MyEditor extends React.Component {
                   currentStyle={editorState.getCurrentInlineStyle()}
                   onToggle={this.toggleInlineStyle}
                 />
+                <LinkControl editorState={editorState} onToggle={this.toggleLink} />
                 <div className={styles.editor} onClick={this.focus}>
                     <Editor
                       blockStyleFn={getBlockStyle}
