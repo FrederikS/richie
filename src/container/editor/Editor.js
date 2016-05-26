@@ -49,14 +49,19 @@ class MyEditor extends React.Component {
 
     render() {
         const { editorState } = this.state;
+        const selection = editorState.getSelection();
+        const currentBlockType = editorState
+                .getCurrentContent()
+                .getBlockForKey(selection.getStartKey())
+                .getType();
         return (
             <div className={styles.editorRoot}>
                 <BlockStyleControls
-                  editorState={editorState}
+                  currentType={currentBlockType}
                   onToggle={this.toggleBlockType}
                 />
                 <InlineStyleControls
-                  editorState={editorState}
+                  currentStyle={editorState.getCurrentInlineStyle()}
                   onToggle={this.toggleInlineStyle}
                 />
                 <div className={styles.editor} onClick={this.focus}>

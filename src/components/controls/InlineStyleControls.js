@@ -10,7 +10,7 @@ const INLINE_STYLES = [
 ];
 
 const InlineStyleControls = (props) => {
-    const currentStyle = props.editorState.getCurrentInlineStyle();
+    const { currentStyle } = props;
     return (
         <div className={styles.controls}>
             {INLINE_STYLES.map(type =>
@@ -27,7 +27,7 @@ const InlineStyleControls = (props) => {
 };
 
 InlineStyleControls.propTypes = {
-    editorState: React.PropTypes.object.isRequired,
+    currentStyle: React.PropTypes.object.isRequired,
     onToggle: React.PropTypes.func
 };
 

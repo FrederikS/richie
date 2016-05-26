@@ -30,8 +30,7 @@
     padding-top: 0;
 }
 
-.blockquote + *:not(.blockquote),
-.blockquote:last-child {
+.blockquote + *:not(.blockquote) {
     margin-top: 16px;
 }
 

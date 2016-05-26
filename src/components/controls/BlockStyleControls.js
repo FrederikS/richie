@@ -24,18 +24,13 @@ export function getBlockStyle(block) {
 }
 
 const BlockStyleControls = (props) => {
-    const { editorState } = props;
-    const selection = editorState.getSelection();
-    const blockType = editorState
-            .getCurrentContent()
-            .getBlockForKey(selection.getStartKey())
-            .getType();
+    const { currentType } = props;
     return (
         <div className={styles.controls}>
             {BLOCK_TYPES.map((type) =>
                 <StyleButton
                   key={type.label}
-                  active={type.style === blockType}
+                  active={type.style === currentType}
                   label={type.label}
                   onToggle={props.onToggle}
                   style={type.style}
@@ -46,7 +41,7 @@ const BlockStyleControls = (props) => {
 };
 
 BlockStyleControls.propTypes = {
-    editorState: React.PropTypes.object.isRequired,
+    currentType: React.PropTypes.string.isRequired,
     onToggle: React.PropTypes.func
 };
 
