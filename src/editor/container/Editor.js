@@ -1,11 +1,11 @@
 import React from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';
-import BlockStyleControls, { getBlockStyle } from '../../components/controls/BlockStyleControls';
-import InlineStyleControls from '../../components/controls/InlineStyleControls';
+import BlockStyleControls, { getBlockStyle } from '../components/controls/BlockStyleControls';
+import InlineStyleControls from '../components/controls/InlineStyleControls';
 import styles from './styles.css';
-import '../../styles/editor.global.css';
+import '../styles/editor.global.css';
 import LinkControl from './controls/LinkControl';
-import LinkDecorator from '../../editor/LinkDecorator';
+import LinkDecorator from '../decorators/LinkDecorator';
 
 class MyEditor extends React.Component {
     constructor(props) {

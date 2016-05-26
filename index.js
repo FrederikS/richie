@@ -1,3 +1,3 @@
-import Editor from './src/container/editor/Editor';
+import Editor from './src/editor/container/Editor';
 
 export default Editor;
