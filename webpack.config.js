@@ -29,7 +29,8 @@ module.exports = {
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'babel-loader']
             },
-            { test: /\.css$/, loader: 'style-loader!css-loader' }
+            { test: /\.css$/, exclude: /\.global\.css$/, loader: 'style-loader!css-loader?modules&camelCase' },
+            { test: /\.global\.css$/, loader: 'style-loader!css-loader' }
         ]
     },
     plugins: [
