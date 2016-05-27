@@ -115,9 +115,9 @@ class LinkControl extends React.Component {
             />
         ];
         return (
-            <div>
+            <span>
                 <IconButton
-                  onClick={this.handleOpen}
+                  onTouchTap={this.handleOpen}
                   tooltip="Insert Link"
                   tooltipPosition="top-center"
                 >
@@ -145,7 +145,7 @@ class LinkControl extends React.Component {
                   autoHideDuration={3000}
                   onRequestClose={this.closeLinkError}
                 />
-            </div>
+            </span>
         );
     }
 }

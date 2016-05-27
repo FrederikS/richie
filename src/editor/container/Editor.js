@@ -1,11 +1,13 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils } from 'draft-js';
 import BlockStyleControls, { getBlockStyle } from '../components/controls/BlockStyleControls';
 import InlineStyleControls from '../components/controls/InlineStyleControls';
 import styles from './styles.css';
 import '../styles/editor.global.css';
 import LinkControl from './controls/LinkControl';
+import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
+import { blockRenderer } from '../renderer/BlockRenderer';
 
 class MyEditor extends React.Component {
     constructor(props) {
@@ -20,6 +22,7 @@ class MyEditor extends React.Component {
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
         this.toggleLink = (linkEntity) => this._toggleLink(linkEntity);
+        this.addImage = (imageEntity) => this._addImage(imageEntity);
     }
 
     _handleKeyCommand(command) {
@@ -55,6 +58,14 @@ class MyEditor extends React.Component {
         ));
     }
 
+    _addImage(imageEntity) {
+        this.onChange(AtomicBlockUtils.insertAtomicBlock(
+            this.state.editorState,
+            imageEntity,
+            ' '
+        ));
+    }
+
     render() {
         const { editorState } = this.state;
         const selection = editorState.getSelection();
@@ -73,8 +84,10 @@ class MyEditor extends React.Component {
                   onToggle={this.toggleInlineStyle}
                 />
                 <LinkControl editorState={editorState} onToggle={this.toggleLink} />
+                <ImageControl onImageAdd={this.addImage} />
                 <div className={styles.editor} onClick={this.focus}>
                     <Editor
+                      blockRendererFn={blockRenderer}
                       blockStyleFn={getBlockStyle}
                       editorState={editorState}
                       handleKeyCommand={this.handleKeyCommand}
