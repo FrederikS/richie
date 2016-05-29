@@ -8,12 +8,7 @@ import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
 import { blockRenderer } from '../renderer/BlockRenderer';
 import { moveBlock } from '../modifier/Modifier';
-import {
-    Editor,
-    EditorState,
-    RichUtils,
-    AtomicBlockUtils
-} from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils } from 'draft-js';
 
 class MyEditor extends React.Component {
     constructor(props) {
