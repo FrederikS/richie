@@ -1,5 +1,4 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils } from 'draft-js';
 import BlockStyleControls, { getBlockStyle } from '../components/controls/BlockStyleControls';
 import InlineStyleControls from '../components/controls/InlineStyleControls';
 import styles from './styles.css';
@@ -8,6 +7,13 @@ import LinkControl from './controls/LinkControl';
 import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
 import { blockRenderer } from '../renderer/BlockRenderer';
+import { moveBlock } from '../modifier/Modifier';
+import {
+    Editor,
+    EditorState,
+    RichUtils,
+    AtomicBlockUtils
+} from 'draft-js';
 
 class MyEditor extends React.Component {
     constructor(props) {
@@ -23,6 +29,10 @@ class MyEditor extends React.Component {
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
         this.toggleLink = (linkEntity) => this._toggleLink(linkEntity);
         this.addImage = (imageEntity) => this._addImage(imageEntity);
+        this.handleDrop = (selectionState, dataTransfer) => this._handleDrop(
+            selectionState,
+            dataTransfer
+        );
     }
 
     _handleKeyCommand(command) {
@@ -66,6 +76,18 @@ class MyEditor extends React.Component {
         ));
     }
 
+    _handleDrop(dropSelection, dataTransfer) {
+        const { editorState } = this.state;
+        const blockKey = dataTransfer.data.getData('block-key');
+        const contentWithMovedBlock = moveBlock(
+            editorState.getCurrentContent(),
+            dropSelection,
+            blockKey
+        );
+        this.onChange(EditorState.push(editorState, contentWithMovedBlock, 'insert-fragment'));
+        return true;
+    }
+
     render() {
         const { editorState } = this.state;
         const selection = editorState.getSelection();
@@ -85,7 +107,11 @@ class MyEditor extends React.Component {
                 />
                 <LinkControl editorState={editorState} onToggle={this.toggleLink} />
                 <ImageControl onImageAdd={this.addImage} />
-                <div className={styles.editor} onClick={this.focus}>
+                <div
+                  className={styles.editor}
+                  onClick={this.focus}
+                  onDragOver={(e) => e.preventDefault()}
+                >
                     <Editor
                       blockRendererFn={blockRenderer}
                       blockStyleFn={getBlockStyle}
@@ -94,6 +120,7 @@ class MyEditor extends React.Component {
                       onChange={this.onChange}
                       ref="editor"
                       spellCheck
+                      handleDrop={this.handleDrop}
                     />
                 </div>
             </div>

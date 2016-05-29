@@ -7,7 +7,7 @@ import UploadIcon from 'material-ui/svg-icons/file/file-upload';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import styles from './styles.css';
-import imageUpload from '../../upload/upload.js';
+import imageUpload from '../../upload/image.js';
 
 class ImageControl extends React.Component {
     constructor(props) {
