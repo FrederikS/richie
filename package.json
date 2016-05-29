@@ -2,6 +2,7 @@
   "name": "draft-js-editor",
   "version": "0.0.1",
   "private": true,
+  "author": "Frederik Steffen frederik.steffen@gmail.com",
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server --inline --hot",
     "lint": "node_modules/.bin/eslint index.js src"
