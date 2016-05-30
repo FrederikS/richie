@@ -1,10 +1,10 @@
-import Image from '../components/entities/Image';
+import Atomic from '../components/blocks/Atomic';
 
 export function blockRenderer(block) {
     switch (block.getType()) {
         case 'atomic':
             return {
-                component: Image,
+                component: Atomic,
                 editable: false
             };
         default:

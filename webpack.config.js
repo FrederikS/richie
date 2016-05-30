@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: [
         // Webpack Development Server mit Hot Reloading
-        'webpack-dev-server/client?http://localhost:8080',
+        'webpack-dev-server/client?http://localhost:3001',
         'webpack/hot/dev-server',
         path.resolve(__dirname, 'src/app.js')
     ],
@@ -17,7 +17,8 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     devServer: {
-        contentBase: 'build'
+        contentBase: 'build',
+        port: 3001
     },
     module: {
         preLoaders: [
