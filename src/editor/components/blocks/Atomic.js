@@ -1,6 +1,7 @@
 import React from 'react';
 import { Entity } from 'draft-js';
 import Image from '../entities/Image';
+import Types from '../entities/constants/Types';
 
 class AtomicBlock extends React.Component {
 
@@ -19,7 +20,7 @@ class AtomicBlock extends React.Component {
         const entity = Entity.get(this.props.block.getEntityAt(0));
         const type = entity.getType();
         switch (type) {
-            case 'IMAGE': {
+            case Types.IMAGE: {
                 const { src, title } = entity.getData();
                 return <Image src={src} title={title} onDragStart={this.onDragStart} />;
             }

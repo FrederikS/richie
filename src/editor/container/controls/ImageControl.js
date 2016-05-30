@@ -7,6 +7,7 @@ import UploadIcon from 'material-ui/svg-icons/file/file-upload';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import styles from './styles.css';
+import Types from '../../components/entities/constants/Types';
 
 class ImageControl extends React.Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class ImageControl extends React.Component {
 
     _insertImage() {
         const { src, title } = this.state;
-        const entityKey = Entity.create('IMAGE', 'IMMUTABLE', { src, title });
+        const entityKey = Entity.create(Types.IMAGE, 'IMMUTABLE', { src, title });
         this.props.onImageAdd(entityKey);
         this.handleClose();
     }

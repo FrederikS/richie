@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { findLinkEntities } from '../../decorators/LinkDecorator';
 import Snackbar from 'material-ui/Snackbar';
+import Types from '../../components/entities/constants/Types';
 
 function findLinkEntityRangesIn(blockContent) {
     const entityRanges = [];
@@ -39,7 +40,7 @@ class LinkControl extends React.Component {
 
     _toggleLink() {
         const { url } = this.state;
-        const entityKey = url ? Entity.create('LINK', 'MUTABLE', { href: url }) : null;
+        const entityKey = url ? Entity.create(Types.LINK, 'MUTABLE', { href: url }) : null;
         this.props.onToggle(entityKey);
         this.handleClose();
     }
@@ -93,7 +94,7 @@ class LinkControl extends React.Component {
         if (linkEntityRanges.length === 1 && matchesExactly(selection, linkEntityRanges[0])) {
             const entityKey = blockContent.getEntityAt(0);
             const entity = entityKey ? Entity.get(entityKey) : null;
-            url = entity && entity.getType() === 'LINK' ? entity.getData().href : '';
+            url = entity && entity.getType() === Types.LINK ? entity.getData().href : '';
         } else {
             url = '';
         }
