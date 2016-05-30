@@ -3,14 +3,15 @@ import { getBlockStyle } from '../../components/controls/BlockStyleControls';
 import '../../styles/editor.global.css';
 import LinkDecorator from '../../decorators/LinkDecorator';
 import { blockRenderer } from '../../renderer/BlockRenderer';
-import { Editor, EditorState, convertFromRaw } from 'draft-js';
+import { Editor, EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 
 class Preview extends React.Component {
     constructor(props) {
         super(props);
+        this.decorator = new CompositeDecorator([LinkDecorator]);
         const editorState = props.rawContent ?
-            EditorState.createWithContent(convertFromRaw(props.rawContent), LinkDecorator) :
-            EditorState.createEmpty(LinkDecorator);
+            EditorState.createWithContent(convertFromRaw(props.rawContent), this.decorator) :
+            EditorState.createEmpty(this.decorator);
         this.state = { editorState };
     }
 
@@ -18,7 +19,7 @@ class Preview extends React.Component {
         if (nextProps.rawContent) {
             const newContent = convertFromRaw(nextProps.rawContent);
             this.setState({
-                editorState: EditorState.createWithContent(newContent, LinkDecorator)
+                editorState: EditorState.createWithContent(newContent, this.decorator)
             });
         }
     }

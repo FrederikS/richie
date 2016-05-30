@@ -8,7 +8,14 @@ import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
 import { blockRenderer } from '../renderer/BlockRenderer';
 import { moveBlock } from '../modifier/Modifier';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils, convertToRaw } from 'draft-js';
+import {
+    Editor,
+    EditorState,
+    RichUtils,
+    AtomicBlockUtils,
+    convertToRaw,
+    CompositeDecorator
+} from 'draft-js';
 
 class MyEditor extends React.Component {
     constructor(props) {
@@ -26,7 +33,7 @@ class MyEditor extends React.Component {
         );
 
         this.state = {
-            editorState: EditorState.createEmpty(LinkDecorator)
+            editorState: EditorState.createEmpty(new CompositeDecorator([LinkDecorator]))
         };
     }
 

@@ -1,4 +1,4 @@
-import { Entity, CompositeDecorator } from 'draft-js';
+import { Entity } from 'draft-js';
 import Link from '../components/entities/Link';
 import Types from '../components/entities/constants/Types';
 
@@ -9,11 +9,7 @@ export function findLinkEntities(contentBlock, callback) {
     }, callback);
 }
 
-const linkDecorator = new CompositeDecorator([
-    {
-        strategy: findLinkEntities,
-        component: Link
-    }
-]);
-
-export default linkDecorator;
+export default Object.freeze({
+    strategy: findLinkEntities,
+    component: Link
+});
