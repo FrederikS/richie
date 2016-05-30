@@ -7,7 +7,6 @@ import UploadIcon from 'material-ui/svg-icons/file/file-upload';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import styles from './styles.css';
-import imageUpload from '../../upload/image.js';
 
 class ImageControl extends React.Component {
     constructor(props) {
@@ -47,9 +46,9 @@ class ImageControl extends React.Component {
 
     _handleFiles(e) {
         const imageFile = e.target.files[0];
-        imageUpload(imageFile, (dataURL) => {
+        this.props.handleImageFile(imageFile, (src) => {
             this.setState({
-                src: dataURL,
+                src,
                 fileName: imageFile.name
             }, () => this.refs['img-title'].focus());
         });
@@ -135,7 +134,8 @@ class ImageControl extends React.Component {
 }
 
 ImageControl.propTypes = {
-    onImageAdd: React.PropTypes.func
+    onImageAdd: React.PropTypes.func,
+    handleImageFile: React.PropTypes.func.isRequired
 };
 
 ImageControl.defaultProps = {

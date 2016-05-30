@@ -101,7 +101,10 @@ class MyEditor extends React.Component {
                   onToggle={this.toggleInlineStyle}
                 />
                 <LinkControl editorState={editorState} onToggle={this.toggleLink} />
-                <ImageControl onImageAdd={this.addImage} />
+                <ImageControl
+                  onImageAdd={this.addImage}
+                  handleImageFile={this.props.handleImageFile}
+                />
                 <div
                   className={styles.editor}
                   onClick={this.focus}
@@ -122,5 +125,9 @@ class MyEditor extends React.Component {
         );
     }
 }
+
+MyEditor.propTypes = {
+    handleImageFile: React.PropTypes.func.isRequired
+};
 
 export default MyEditor;
