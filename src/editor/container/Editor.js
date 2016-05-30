@@ -8,17 +8,13 @@ import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
 import { blockRenderer } from '../renderer/BlockRenderer';
 import { moveBlock } from '../modifier/Modifier';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils, convertToRaw } from 'draft-js';
 
 class MyEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            editorState: EditorState.createEmpty(LinkDecorator)
-        };
-
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({ editorState });
+        this.onChange = (editorState) => this._onChange(editorState);
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
         this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
@@ -28,6 +24,15 @@ class MyEditor extends React.Component {
             selectionState,
             dataTransfer
         );
+
+        this.state = {
+            editorState: EditorState.createEmpty(LinkDecorator)
+        };
+    }
+
+    _onChange(editorState) {
+        this.props.onChange(convertToRaw(editorState.getCurrentContent()));
+        this.setState({ editorState });
     }
 
     _handleKeyCommand(command) {
@@ -90,6 +95,7 @@ class MyEditor extends React.Component {
                 .getCurrentContent()
                 .getBlockForKey(selection.getStartKey())
                 .getType();
+        const { handleImageFile } = this.props;
         return (
             <div className={styles.editorRoot}>
                 <BlockStyleControls
@@ -101,10 +107,7 @@ class MyEditor extends React.Component {
                   onToggle={this.toggleInlineStyle}
                 />
                 <LinkControl editorState={editorState} onToggle={this.toggleLink} />
-                <ImageControl
-                  onImageAdd={this.addImage}
-                  handleImageFile={this.props.handleImageFile}
-                />
+                <ImageControl onImageAdd={this.addImage} handleImageFile={handleImageFile} />
                 <div
                   className={styles.editor}
                   onClick={this.focus}
@@ -127,7 +130,12 @@ class MyEditor extends React.Component {
 }
 
 MyEditor.propTypes = {
-    handleImageFile: React.PropTypes.func.isRequired
+    handleImageFile: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func
+};
+
+MyEditor.defaultProps = {
+    onChange: () => {}
 };
 
 export default MyEditor;

@@ -4,6 +4,7 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Preview from './editor/container/preview/Preview';
 
 injectTapEventPlugin();
 
@@ -15,8 +16,15 @@ const handleImageFile = (file, callback) => {
     reader.readAsDataURL(file);
 };
 
+const renderOutput = (rawContent) => {
+    ReactDOM.render(
+        <Preview rawContent={rawContent} />,
+        document.getElementById('output')
+    );
+};
+
 ReactDOM.render((
     <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Editor handleImageFile={handleImageFile} />
+        <Editor handleImageFile={handleImageFile} onChange={renderOutput} />
     </MuiThemeProvider>
-), document.getElementById('app'));
+), document.getElementById('editor'));
