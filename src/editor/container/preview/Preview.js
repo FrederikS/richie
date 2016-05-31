@@ -2,13 +2,13 @@ import React from 'react';
 import { getBlockStyle } from '../../components/controls/BlockStyleControls';
 import '../../styles/editor.global.css';
 import LinkDecorator from '../../decorators/LinkDecorator';
-import { blockRenderer } from '../../renderer/BlockRenderer';
 import { Editor, EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
-import setEntitiesNonEditable from './utils/setEntitiesNonEditable';
+import Atomic from '../blocks/ResizableAtomic';
 
 class Preview extends React.Component {
     constructor(props) {
         super(props);
+        this.getBlockRenderer = (block) => this._getBlockRenderer(block);
         this.decorator = new CompositeDecorator([LinkDecorator]);
         const editorState = props.rawContent ?
             EditorState.createWithContent(convertFromRaw(props.rawContent), this.decorator) :
@@ -18,18 +18,32 @@ class Preview extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.rawContent) {
-            const contentWithReadOnlyEntities = setEntitiesNonEditable(nextProps.rawContent);
-            const newContent = convertFromRaw(contentWithReadOnlyEntities);
+            const newContent = convertFromRaw(nextProps.rawContent);
             this.setState({
                 editorState: EditorState.createWithContent(newContent, this.decorator)
             });
         }
     }
 
+    _getBlockRenderer(block) {
+        switch (block.getType()) {
+            case 'atomic':
+                return {
+                    component: Atomic,
+                    editable: false,
+                    props: {
+                        editable: false
+                    }
+                };
+            default:
+                return null;
+        }
+    }
+
     render() {
         return (
             <Editor
-              blockRendererFn={blockRenderer}
+              blockRendererFn={this.getBlockRenderer}
               blockStyleFn={getBlockStyle}
               editorState={this.state.editorState}
               spellCheck

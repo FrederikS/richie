@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "draft-js": "^0.7.0",
+    "interact.js": "^1.2.6",
     "material-ui": "^0.15.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",

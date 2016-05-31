@@ -6,8 +6,8 @@ import '../styles/editor.global.css';
 import LinkControl from './controls/LinkControl';
 import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
-import { blockRenderer } from '../renderer/BlockRenderer';
 import { moveBlock } from '../modifier/Modifier';
+import ResizableAtomic from './blocks/ResizableAtomic';
 import {
     Editor,
     EditorState,
@@ -31,10 +31,26 @@ class MyEditor extends React.Component {
             selectionState,
             dataTransfer
         );
+        this.getBlockRenderer = (block) => this._getBlockRenderer(block);
 
         this.state = {
             editorState: EditorState.createEmpty(new CompositeDecorator([LinkDecorator]))
         };
+    }
+
+    _getBlockRenderer(block) {
+        switch (block.getType()) {
+            case 'atomic':
+                return {
+                    component: ResizableAtomic,
+                    editable: false,
+                    props: {
+                        editable: true
+                    }
+                };
+            default:
+                return null;
+        }
     }
 
     _onChange(editorState) {
@@ -121,7 +137,7 @@ class MyEditor extends React.Component {
                   onDragOver={(e) => e.preventDefault()}
                 >
                     <Editor
-                      blockRendererFn={blockRenderer}
+                      blockRendererFn={this.getBlockRenderer}
                       blockStyleFn={getBlockStyle}
                       editorState={editorState}
                       handleKeyCommand={this.handleKeyCommand}
