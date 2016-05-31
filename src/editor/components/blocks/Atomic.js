@@ -21,8 +21,15 @@ class AtomicBlock extends React.Component {
         const type = entity.getType();
         switch (type) {
             case Types.IMAGE: {
-                const { src, title } = entity.getData();
-                return <Image src={src} title={title} onDragStart={this.onDragStart} />;
+                const { src, title, editable = true } = entity.getData();
+                return (
+                    <Image
+                      src={src}
+                      title={title}
+                      draggable={editable}
+                      onDragStart={this.onDragStart}
+                    />
+                );
             }
             default:
                 return '';

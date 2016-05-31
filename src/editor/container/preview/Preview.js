@@ -4,6 +4,7 @@ import '../../styles/editor.global.css';
 import LinkDecorator from '../../decorators/LinkDecorator';
 import { blockRenderer } from '../../renderer/BlockRenderer';
 import { Editor, EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
+import setEntitiesNonEditable from './utils/setEntitiesNonEditable';
 
 class Preview extends React.Component {
     constructor(props) {
@@ -17,7 +18,8 @@ class Preview extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.rawContent) {
-            const newContent = convertFromRaw(nextProps.rawContent);
+            const contentWithReadOnlyEntities = setEntitiesNonEditable(nextProps.rawContent);
+            const newContent = convertFromRaw(contentWithReadOnlyEntities);
             this.setState({
                 editorState: EditorState.createWithContent(newContent, this.decorator)
             });

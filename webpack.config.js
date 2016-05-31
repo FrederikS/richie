@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: [
+        'babel-polyfill',
         // Webpack Development Server mit Hot Reloading
         'webpack-dev-server/client?http://localhost:3001',
         'webpack/hot/dev-server',
