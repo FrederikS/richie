@@ -7,7 +7,7 @@ import LinkControl from './controls/LinkControl';
 import ImageControl from './controls/ImageControl';
 import LinkDecorator from '../decorators/LinkDecorator';
 import { moveBlock } from '../modifier/Modifier';
-import ResizableAtomic from './blocks/ResizableAtomic';
+import Atomic from './blocks/Atomic';
 import {
     Editor,
     EditorState,
@@ -42,7 +42,7 @@ class MyEditor extends React.Component {
         switch (block.getType()) {
             case 'atomic':
                 return {
-                    component: ResizableAtomic,
+                    component: Atomic,
                     editable: false,
                     props: {
                         editable: true

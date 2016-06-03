@@ -26,23 +26,27 @@ class AtomicBlock extends React.Component {
         e.dataTransfer.setData('block-key', this.props.block.key);
     }
 
+    _renderComponent(Component) {
+        const { editable } = this.props.blockProps;
+        return editable ? <Resizable onResize={this.onResize}>{Component}</Resizable> : Component;
+    }
+
     render() {
+        const { editable } = this.props.blockProps;
         const entity = Entity.get(this.props.block.getEntityAt(0));
         const type = entity.getType();
         switch (type) {
             case Types.IMAGE: {
                 const { src, title, width, height } = entity.getData();
-                return (
-                    <Resizable onResize={this.onResize}>
-                        <Image
-                          src={src}
-                          title={title}
-                          width={width}
-                          height={height}
-                          onDragStart={this.onDragStart}
-                          draggable
-                        />
-                    </Resizable>
+                return this._renderComponent(
+                    <Image
+                      src={src}
+                      title={title}
+                      width={width}
+                      height={height}
+                      onDragStart={this.onDragStart}
+                      draggable={editable}
+                    />
                 );
             }
             default:
