@@ -1,3 +1,4 @@
-import Editor from './src/editor/container/Editor';
+import Editor from './src/editor/components/Editor';
+import Preview from './src/editor/components/preview/Preview';
 
-export default Editor;
+export { Editor, Preview };

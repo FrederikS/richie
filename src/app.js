@@ -1,10 +1,9 @@
-import Editor from '../index';
+import { Editor, Preview } from '../index';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Preview from './editor/container/preview/Preview';
 
 injectTapEventPlugin();
 
@@ -17,10 +16,7 @@ const handleImageFile = (file, callback) => {
 };
 
 const renderOutput = (rawContent) => {
-    ReactDOM.render(
-        <Preview rawContent={rawContent} />,
-        document.getElementById('output')
-    );
+    ReactDOM.render(<Preview rawContent={rawContent} />, document.getElementById('output'));
 };
 
 ReactDOM.render((
