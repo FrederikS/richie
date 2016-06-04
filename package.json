@@ -1,6 +1,6 @@
 {
   "name": "richie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Frederik Steffen <frederik.steffen@gmail.com>",
   "description": "Rich-Text-Editor implemented with draft.js",
   "main": "lib/index.js",
@@ -24,10 +24,11 @@
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server --inline --hot",
     "lint": "node_modules/.bin/eslint index.js src",
+    "copy": "cd src && (find . -name '*.css' | cpio -pdmv ../lib/) && cd ..",
     "build:dist": "node_modules/.bin/webpack --config webpack.config.build.js",
     "build:dist:min": "node_modules/.bin/webpack --config webpack.config.build.js --output-filename Richie.min.js --optimize-minimize",
     "build:package": "node_modules/.bin/babel src --out-dir lib --ignore app.js,MuiWrappers.js",
-    "build": "npm run clean && npm run build:package && npm run build:dist && npm run build:dist:min",
+    "build": "npm run clean && npm run build:package && npm run build:dist && npm run build:dist:min && npm run copy",
     "prepublish": "npm run build",
     "clean": "rm -rf dist lib"
   },
