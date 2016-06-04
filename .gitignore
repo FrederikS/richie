@@ -2,3 +2,5 @@
 node_modules
 build/assets
 .tags
+dist
+lib
