@@ -25,7 +25,7 @@ ReactDOM.render(
 
 ## Requirements
 
-You need to define a `handleImageFile` callback and pass through the related `Editor` Component property. The example above handles selected image files with inserting a data-URI. But in other cases you may like to upload them to a server and reference the url. The returned url is used as src-attribute of the img-tag.
+You need to define a `handleImageFile` callback and pass through the related `Editor` Component property. The example above handles selected image files with returning a Data-URL. But in other cases you may like to upload them to a server and reference the url. The returned url is used as src attribute of the img tag.
 
 ## API
 
@@ -49,6 +49,6 @@ ReactDOM.render(
 );
 ```
 
-## Dependencies
+## Peer-Dependencies
 
-`npm install react react-dom immutable material-ui --save`
+`npm install react react-dom material-ui --save`
