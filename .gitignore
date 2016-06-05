@@ -4,3 +4,4 @@ build/assets
 .tags
 dist
 lib
+npm-debug.log

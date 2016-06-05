@@ -2,18 +2,22 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src/MuiWrappers.js'),
+    entry: path.resolve(__dirname, 'index.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'Richie.js',
-        libraryTarget: 'var',
-        library: 'Richie'
+        libraryTarget: 'umd',
     },
-    externals: {
-        'immutable': 'Immutable',
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-    },
+    externals: [
+        'immutable',
+        'react',
+        'react-dom',
+        'react-addons-transition-group',
+        'react-addons-pure-render-mixin',
+        'react-addons-create-fragment',
+        'react-addons-update',
+        'draft-js'
+    ],
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
@@ -32,6 +36,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ],
     eslint: {
         failOnWarning: false,
