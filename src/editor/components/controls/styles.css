@@ -73,3 +73,12 @@ pre .code:last-child {
 .grow-item {
     flex: 1 1 auto;
 }
+
+.atomic {
+    cursor: initial;
+}
+
+.atomic img {
+    display: block;
+    margin: auto;
+}

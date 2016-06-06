@@ -9,6 +9,7 @@ module.exports = {
         'webpack/hot/dev-server',
         path.resolve(__dirname, 'src/app.js')
     ],
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'build/assets'),
         publicPath: '/assets/',

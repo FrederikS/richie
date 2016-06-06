@@ -1,4 +1,7 @@
 .selected {
-    outline: -webkit-focus-ring-color auto 5px;
+    outline-color: rgb(77, 144, 254); // #4D90FE
+    outline-offset: -2px;
+    outline-style: auto;
+    outline-width: 6px;
     cursor: move;
 }

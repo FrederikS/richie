@@ -18,6 +18,8 @@ export function getBlockStyle(block) {
             return styles.blockquote;
         case 'code-block':
             return styles.code;
+        case 'atomic':
+            return styles.atomic;
         default:
             return null;
     }
