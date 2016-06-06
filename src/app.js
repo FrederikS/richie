@@ -1,4 +1,4 @@
-import { Editor, Preview } from './index';
+import { Editor, Preview } from '../index';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
