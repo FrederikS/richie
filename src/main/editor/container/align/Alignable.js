@@ -8,6 +8,11 @@ class Alignable extends React.Component {
         this.alignLeft = () => this._alignLeft();
         this.alignCenter = () => this._alignLeft();
         this.alignRight = () => this._alignLeft();
+        this.showActionBar = () => this._showActionBar();
+
+        this.state = {
+            showActionBar: false
+        };
     }
 
     _alignLeft() {}
@@ -16,15 +21,22 @@ class Alignable extends React.Component {
 
     _alignRight() {}
 
+    _showActionBar() {
+        this.setState({
+            showActionBar: true
+        });
+    }
+
     render() {
+        const { showActionBar } = this.state;
         return (
             <div>
-                <ActionBar
+                {showActionBar ? <ActionBar
                   onLeftClicked={this.alignLeft}
                   onCenterClicked={this.alignCenter}
                   onRightClicked={this.alignRight}
-                />
-                <div ref="alignable">
+                /> : false}
+                <div ref="alignable" onClick={this.showActionBar}>
                     {this.props.children}
                 </div>
             </div>

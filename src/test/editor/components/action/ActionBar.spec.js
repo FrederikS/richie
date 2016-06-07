@@ -16,6 +16,7 @@ describe('<ActionBar />', () => {
               onRightClicked={() => {}}
             />
         );
+
         actionBar.should.have.tagName('div');
     });
 
