@@ -2,7 +2,7 @@ import React from 'react';
 import { Entity } from 'draft-js';
 import Image from '../../components/entities/Image';
 import Types from '../../components/entities/constants/Types';
-import Resizable from '../../container/Resizable';
+import Resizable from '../../container/resize/Resizable';
 
 class AtomicBlock extends React.Component {
 

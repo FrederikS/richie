@@ -7,7 +7,7 @@ module.exports = {
         // Webpack Development Server mit Hot Reloading
         'webpack-dev-server/client?http://localhost:3001',
         'webpack/hot/dev-server',
-        path.resolve(__dirname, 'src/app.js')
+        path.resolve(__dirname, 'src/main/app.js')
     ],
     devtool: 'inline-source-map',
     output: {

@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "mocha/no-global-tests": 2,
+    "mocha/handle-done-callback": 2,
+    "mocha/no-exclusive-tests": 1,
+    "mocha/no-skipped-tests": 1,
+    "no-unused-expressions": 0
+  },
+  "env": {
+    "mocha": true
+  }
+}
