@@ -7,6 +7,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Editor } from 'richie';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const handleImageFile = (file, callback) => {
     const reader = new FileReader();
@@ -17,7 +19,9 @@ const handleImageFile = (file, callback) => {
 };
 
 ReactDOM.render(
-    <Editor onChange={handleImageFile} />,
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <Editor handleImageFile={handleImageFile} />
+    </MuiThemeProvider>,
     document.getElementById('editor')
 );     
 
