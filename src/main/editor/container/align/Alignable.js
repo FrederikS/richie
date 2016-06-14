@@ -1,25 +1,33 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ActionBar from '../../components/action/ActionBar';
+import styles from './styles.css';
 
 class Alignable extends React.Component {
 
     constructor(props) {
         super(props);
         this.alignLeft = () => this._alignLeft();
-        this.alignCenter = () => this._alignLeft();
-        this.alignRight = () => this._alignLeft();
+        this.alignCenter = () => this._alignCenter();
+        this.alignRight = () => this._alignRight();
         this.showActionBar = () => this._showActionBar();
 
-        this.state = {
-            showActionBar: false
-        };
+        this.state = { showActionBar: false };
     }
 
-    _alignLeft() {}
+    componentDidMount() {
+        this.eventListener = (e) => {
+            const domNode = ReactDOM.findDOMNode(this);
+            if (!domNode.contains(e.target)) {
+                this.setState({ showActionBar: false });
+            }
+        };
+        document.addEventListener('click', this.eventListener, false);
+    }
 
-    _alignCenter() {}
-
-    _alignRight() {}
+    componentWillUnmount() {
+        document.removeEventListener('click', this.eventListener);
+    }
 
     _showActionBar() {
         this.setState({
@@ -30,11 +38,11 @@ class Alignable extends React.Component {
     render() {
         const { showActionBar } = this.state;
         return (
-            <div>
+            <div className={styles.alignable}>
                 {showActionBar ? <ActionBar
-                  onLeftClicked={this.alignLeft}
-                  onCenterClicked={this.alignCenter}
-                  onRightClicked={this.alignRight}
+                  onLeftClicked={() => this.props.onAlign('left')}
+                  onCenterClicked={() => this.props.onAlign('center')}
+                  onRightClicked={() => this.props.onAlign('right')}
                 /> : false}
                 <div ref="alignable" onClick={this.showActionBar}>
                     {this.props.children}
@@ -46,7 +54,12 @@ class Alignable extends React.Component {
 }
 
 Alignable.propTypes = {
-    children: React.PropTypes.node.isRequired
+    children: React.PropTypes.node.isRequired,
+    onAlign: React.PropTypes.func
+};
+
+Alignable.defaultProps = {
+    onAlign: () => {}
 };
 
 export default Alignable;

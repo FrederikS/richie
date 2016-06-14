@@ -1,14 +1,16 @@
 import React from 'react';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
-const ActionBar = (props) => (
-    <div>
-        <ul>
-            <li onClick={props.onLeftClicked}>left</li>
-            <li onClick={props.onCenterClicked}>center</li>
-            <li onClick={props.onRightClicked}>right</li>
-        </ul>
-    </div>
-);
+const ActionBar = (props) => {
+    const { onLeftClicked, onCenterClicked, onRightClicked } = props;
+    return (
+        <Tabs>
+            <Tab label="left" onActive={onLeftClicked} />
+            <Tab label="center" onActive={onCenterClicked} />
+            <Tab label="right" onActive={onRightClicked} />
+        </Tabs>
+    );
+};
 
 ActionBar.propTypes = {
     onLeftClicked: React.PropTypes.func.isRequired,

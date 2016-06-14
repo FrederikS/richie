@@ -77,8 +77,3 @@ pre .code:last-child {
 .atomic {
     cursor: initial;
 }
-
-.atomic img {
-    display: block;
-    margin: auto;
-}
