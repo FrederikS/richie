@@ -1,3 +1,7 @@
+## Demo
+
+http://frederiks.github.io/richie/
+
 ## Usage
 
 `npm install richie --save`

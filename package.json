@@ -24,9 +24,11 @@
     "start": "node_modules/.bin/webpack-dev-server --inline --hot",
     "lint": "node_modules/.bin/eslint index.js src",
     "build:dist": "node_modules/.bin/webpack --config webpack.config.build.js",
-    "build": "npm test && npm run clean && npm run build:dist",
+    "build": "npm test && npm run clean && npm run build:dist && npm run deploy",
     "prepublish": "npm run build",
     "clean": "rm -rf dist",
+    "build:demo": "node_modules/.bin/webpack --devtool eval --optimize-minimize --optimize-occurrence-order --optimize-dedupe",
+    "deploy": "npm run build:demo && node_modules/.bin/gh-pages -d build",
     "test": "scripts/tests.sh"
   },
   "peerDependencies": {
@@ -58,6 +60,7 @@
     "eslint-plugin-jsx-a11y": "^1.2.2",
     "eslint-plugin-mocha": "^3.0.0",
     "eslint-plugin-react": "^5.1.1",
+    "gh-pages": "^0.11.0",
     "interact.js": "^1.2.6",
     "material-ui": "^0.15.0",
     "mocha": "^2.5.3",
