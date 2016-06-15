@@ -40,6 +40,7 @@ class Alignable extends React.Component {
         return (
             <div className={styles.alignable}>
                 {showActionBar ? <ActionBar
+                  selectedIndex={['left', 'center', 'right'].indexOf(this.props.alignment)}
                   onLeftClicked={() => this.props.onAlign('left')}
                   onCenterClicked={() => this.props.onAlign('center')}
                   onRightClicked={() => this.props.onAlign('right')}
@@ -55,7 +56,8 @@ class Alignable extends React.Component {
 
 Alignable.propTypes = {
     children: React.PropTypes.node.isRequired,
-    onAlign: React.PropTypes.func
+    onAlign: React.PropTypes.func,
+    alignment: React.PropTypes.string
 };
 
 Alignable.defaultProps = {

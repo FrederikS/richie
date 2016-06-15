@@ -25,8 +25,8 @@ class AtomicBlock extends React.Component {
 
     componentDidUpdate() {
         const parentNode = ReactDOM.findDOMNode(this).parentNode;
-        const entity = Entity.get(this.props.block.getEntityAt(0));
         valuesAsArray(styles).forEach(className => parentNode.classList.remove(className));
+        const entity = Entity.get(this.props.block.getEntityAt(0));
         parentNode.classList.add(styles[entity.getData().alignment]);
     }
 
@@ -52,10 +52,10 @@ class AtomicBlock extends React.Component {
         e.dataTransfer.setData('block-key', this.props.block.key);
     }
 
-    _renderComponent(Component) {
+    _renderComponent(Component, entityData) {
         const { editable } = this.props.blockProps;
         return editable ? (
-            <Alignable onAlign={this.onAlign}>
+            <Alignable onAlign={this.onAlign} alignment={entityData.alignment}>
                 <Resizable onResize={this.onResize}>
                     {Component}
                 </Resizable>
@@ -79,7 +79,7 @@ class AtomicBlock extends React.Component {
                       onDragStart={this.onDragStart}
                       draggable={editable}
                     />
-                );
+                , entity.getData());
             }
             default:
                 return '';

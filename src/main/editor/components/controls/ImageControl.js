@@ -57,7 +57,11 @@ class ImageControl extends React.Component {
 
     _insertImage() {
         const { src, title } = this.state;
-        const entityKey = Entity.create(Types.IMAGE, 'IMMUTABLE', { src, title });
+        const entityKey = Entity.create(Types.IMAGE, 'IMMUTABLE', {
+            src,
+            title,
+            alignment: 'center'
+        });
         this.props.onImageAdd(entityKey);
         this.handleClose();
     }
