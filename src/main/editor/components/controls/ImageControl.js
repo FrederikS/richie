@@ -25,6 +25,7 @@ class ImageControl extends React.Component {
         this.insertImage = () => this._insertImage();
         this.handleClose = () => this._handleClose();
         this.confirmTitle = (e) => this._confirmTitle(e);
+        this.openFileDialog = () => this._openFileDialog();
     }
 
     _handleOpen() {
@@ -72,6 +73,10 @@ class ImageControl extends React.Component {
         }
     }
 
+    _openFileDialog() {
+        this.refs['image-file-input'].click();
+    }
+
     render() {
         const actions = [
             <FlatButton
@@ -102,6 +107,14 @@ class ImageControl extends React.Component {
                   open={this.state.open}
                   onRequestClose={this.handleClose}
                 >
+                    <input
+                      ref="image-file-input"
+                      type="file"
+                      onChange={this.handleFiles}
+                      accept="image/*"
+                      max="1"
+                      className={styles.fileInput}
+                    />
                     <div className={styles.row}>
                         <TextField
                           name="filename"
@@ -114,15 +127,8 @@ class ImageControl extends React.Component {
                           label="Choose image"
                           labelPosition="before"
                           icon={<UploadIcon />}
-                        >
-                            <input
-                              type="file"
-                              onChange={this.handleFiles}
-                              accept="image/*"
-                              max="1"
-                              className={styles.fileInput}
-                            />
-                        </FlatButton>
+                          onTouchTap={this.openFileDialog}
+                        />
                     </div>
                     <TextField
                       ref="img-title"
