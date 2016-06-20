@@ -1,6 +1,6 @@
 {
   "name": "richie",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "author": "Frederik Steffen <frederik.steffen@gmail.com>",
   "description": "Rich-Text-Editor implemented with draft.js",
   "main": "dist/Richie.js",
