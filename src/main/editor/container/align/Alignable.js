@@ -40,6 +40,7 @@ class Alignable extends React.Component {
         return (
             <div className={styles.alignable}>
                 {showActionBar ? <ActionBar
+                  className={styles.actionBar}
                   selectedIndex={['left', 'center', 'right'].indexOf(this.props.alignment)}
                   onLeftClicked={() => this.props.onAlign('left')}
                   onCenterClicked={() => this.props.onAlign('center')}

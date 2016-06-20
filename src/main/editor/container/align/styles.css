@@ -1,3 +1,11 @@
 .alignable {
     display: inline-block;
+    position: relative;
+}
+
+.action-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
