@@ -5,14 +5,8 @@ import Image from '../../components/media/Image';
 import Types from '../../components/entities/constants/Types';
 import Resizable from '../../container/resize/Resizable';
 import Alignable from '../../container/align/Alignable';
+import { valuesAsArray } from '../../utils/Utils';
 import styles from './styles.css';
-
-function* values(obj) {
-    for (const prop of Object.keys(obj)) {
-        yield obj[prop];
-    }
-}
-const valuesAsArray = (obj) => Array.from(values(obj));
 
 class AtomicBlock extends React.Component {
 
