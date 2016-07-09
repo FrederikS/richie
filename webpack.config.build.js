@@ -13,9 +13,7 @@ module.exports = {
         'react',
         'react-dom',
         'react-addons-transition-group',
-        'react-addons-pure-render-mixin',
         'react-addons-create-fragment',
-        'react-addons-update',
         'draft-js'
     ],
     resolve: {
