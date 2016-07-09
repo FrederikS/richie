@@ -4,12 +4,8 @@ var webpack = require('webpack');
 module.exports = {
     entry: [
         'babel-polyfill',
-        // Webpack Development Server mit Hot Reloading
-        'webpack-dev-server/client?http://localhost:3001',
-        'webpack/hot/dev-server',
         path.resolve(__dirname, 'src/main/app.js')
     ],
-    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'build/assets'),
         publicPath: '/assets/',
@@ -17,10 +13,6 @@ module.exports = {
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
-    },
-    devServer: {
-        contentBase: 'build',
-        port: 3001
     },
     module: {
         preLoaders: [
@@ -37,14 +29,16 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
                 // This has effect on the react lib size
                 'NODE_ENV': JSON.stringify('production'),
             }
-        })
+        }),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin()
     ],
     eslint: {
         failOnWarning: false,

@@ -21,13 +21,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --inline --hot",
+    "start": "node_modules/.bin/webpack-dev-server --config webpack.config.dev.js --inline --hot",
     "lint": "node_modules/.bin/eslint index.js src",
     "build:dist": "node_modules/.bin/webpack --config webpack.config.build.js",
     "build": "npm test && npm run clean && npm run build:dist && npm run deploy",
     "prepublish": "npm run build",
     "clean": "rm -rf dist",
-    "build:demo": "node_modules/.bin/webpack --devtool eval --optimize-minimize --optimize-occurrence-order --optimize-dedupe",
+    "build:demo": "node_modules/.bin/webpack",
     "deploy": "npm run build:demo && node_modules/.bin/gh-pages -d build",
     "test": "scripts/tests.sh"
   },
