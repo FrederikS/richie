@@ -17,7 +17,15 @@ class AtomicBlock extends React.Component {
         this.onDragStart = (e) => this._onDragStart(e);
     }
 
+    componentDidMount() {
+        this._updateAlignment();
+    }
+
     componentDidUpdate() {
+        this._updateAlignment();
+    }
+
+    _updateAlignment() {
         const parentNode = ReactDOM.findDOMNode(this).parentNode;
         valuesAsArray(styles).forEach(className => parentNode.classList.remove(className));
         const entity = Entity.get(this.props.block.getEntityAt(0));
