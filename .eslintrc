@@ -13,6 +13,7 @@
     "semi": ["error", "always"],
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/no-string-refs": "off",
-    "react/no-find-dom-node": "warn"
+    "react/no-find-dom-node": "warn",
+    "import/prefer-default-export": "off"
   }
 }

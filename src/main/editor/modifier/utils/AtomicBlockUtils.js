@@ -38,4 +38,4 @@ const copyAtomicBlock = (contentState, targetSelection, block) => {
     return newContent;
 };
 
-export { copyAtomicBlock as default };
+export { copyAtomicBlock };
