@@ -5,8 +5,8 @@ import LinkIcon from 'material-ui/svg-icons/content/link';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import { findLinkEntities } from '../../decorators/LinkDecorator';
 import Snackbar from 'material-ui/Snackbar';
+import { findLinkEntities } from '../../decorators/LinkDecorator';
 import Types from '../../components/entities/constants/Types';
 
 function findLinkEntityRangesIn(blockContent) {

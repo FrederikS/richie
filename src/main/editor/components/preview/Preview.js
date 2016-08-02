@@ -1,8 +1,8 @@
 import React from 'react';
+import { Editor, EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 import { getBlockStyle } from '../../components/controls/BlockStyleControls';
 import '../../styles/editor.global.css';
 import LinkDecorator from '../../decorators/LinkDecorator';
-import { Editor, EditorState, convertFromRaw, CompositeDecorator } from 'draft-js';
 import Atomic from '../blocks/Atomic';
 
 class Preview extends React.Component {

@@ -7,7 +7,7 @@ import {
 } from 'draft-js';
 import { List, Repeat } from 'immutable';
 
-const copy = (contentState, targetSelection, block) => {
+const copyAtomicBlock = (contentState, targetSelection, block) => {
     const entityKey = block.getEntityAt(0);
 
     const afterRemoval = Modifier.removeRange(contentState, targetSelection, 'backward');
@@ -38,4 +38,4 @@ const copy = (contentState, targetSelection, block) => {
     return newContent;
 };
 
-export { copy as copyAtomicBlock };
+export { copyAtomicBlock as default };

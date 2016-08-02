@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './styles.css';
 import ReactDOM from 'react-dom';
 import interact from 'interact.js';
 import classNames from 'classnames/bind';
+import styles from './styles.css';
+
 const classNamesWithStyles = classNames.bind(styles);
 
 class Resizable extends React.Component {

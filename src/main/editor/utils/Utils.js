@@ -6,4 +6,4 @@ function* values(obj) {
 
 const valuesAsArray = (obj) => Array.from(values(obj));
 
-export { valuesAsArray };
+export { valuesAsArray as default };

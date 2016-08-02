@@ -2,4 +2,4 @@ function isSelectionSame({ anchorKey: ak1, focusKey: fk1 }, { anchorKey: ak2, fo
     return ak1 === ak2 && fk1 === fk2;
 }
 
-export { isSelectionSame };
+export { isSelectionSame as default };

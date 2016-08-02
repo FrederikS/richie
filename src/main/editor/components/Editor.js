@@ -1,13 +1,4 @@
 import React from 'react';
-import BlockStyleControls, { getBlockStyle } from '../components/controls/BlockStyleControls';
-import InlineStyleControls from '../components/controls/InlineStyleControls';
-import styles from './styles.css';
-import '../styles/editor.global.css';
-import LinkControl from './controls/LinkControl';
-import ImageControl from './controls/ImageControl';
-import LinkDecorator from '../decorators/LinkDecorator';
-import { moveBlock } from '../modifier/Modifier';
-import Atomic from './blocks/Atomic';
 import {
     Editor,
     EditorState,
@@ -16,6 +7,15 @@ import {
     convertToRaw,
     CompositeDecorator
 } from 'draft-js';
+import InlineStyleControls from '../components/controls/InlineStyleControls';
+import styles from './styles.css';
+import '../styles/editor.global.css';
+import LinkControl from './controls/LinkControl';
+import ImageControl from './controls/ImageControl';
+import LinkDecorator from '../decorators/LinkDecorator';
+import Atomic from './blocks/Atomic';
+import BlockStyleControls, { getBlockStyle } from '../components/controls/BlockStyleControls';
+import { moveBlock } from '../modifier/Modifier';
 
 class MyEditor extends React.Component {
     constructor(props) {

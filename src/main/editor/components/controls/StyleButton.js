@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './styles.css';
 import classNames from 'classnames/bind';
+import styles from './styles.css';
+
 const classNamesWithStyles = classNames.bind(styles);
 
 class StyleButton extends React.Component {

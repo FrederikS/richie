@@ -12,4 +12,4 @@ const getBlockRange = (contentState, blockKey) => {
     });
 };
 
-export { getBlockRange };
+export { getBlockRange as default };

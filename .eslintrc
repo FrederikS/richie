@@ -1,4 +1,7 @@
 {
+  "env": {
+    "browser": true
+  },
   "extends": "airbnb",
   "rules": {
     "indent": ["error", 4, {"SwitchCase": 1}],
@@ -7,6 +10,9 @@
     "react/prefer-stateless-function": "warn",
     "react/jsx-indent": ["error", 4],
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/no-string-refs": "off",
+    "react/no-find-dom-node": "warn"
   }
 }
