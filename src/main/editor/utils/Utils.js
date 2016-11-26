@@ -1,9 +1,3 @@
-function* values(obj) {
-    for (const prop of Object.keys(obj)) {
-        yield obj[prop];
-    }
-}
-
-const valuesAsArray = (obj) => Array.from(values(obj));
+const valuesAsArray = obj => Object.keys(obj).map(key => obj[key]);
 
 export { valuesAsArray };

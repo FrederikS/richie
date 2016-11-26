@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Image = (props) => <img {...props} alt={props.title} />;
+const Image = props => <img {...props} alt={props.title} />;
 
+/* eslint-disable react/no-unused-prop-types */
 Image.propTypes = {
     src: React.PropTypes.string.isRequired,
     title: React.PropTypes.string,

@@ -20,11 +20,11 @@ class ImageControl extends React.Component {
         };
 
         this.handleOpen = () => this._handleOpen();
-        this.setTitle = (e) => this._setTitle(e);
-        this.handleFiles = (e) => this._handleFiles(e);
+        this.setTitle = e => this._setTitle(e);
+        this.handleFiles = e => this._handleFiles(e);
         this.insertImage = () => this._insertImage();
         this.handleClose = () => this._handleClose();
-        this.confirmTitle = (e) => this._confirmTitle(e);
+        this.confirmTitle = e => this._confirmTitle(e);
         this.openFileDialog = () => this._openFileDialog();
     }
 

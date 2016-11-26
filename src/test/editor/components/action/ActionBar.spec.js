@@ -1,9 +1,9 @@
 import React from 'react';
 import chai from 'chai';
-import ActionBar from '../../../../main/editor/components/action/ActionBar';
 import chaiEnzyme from 'chai-enzyme';
 import chaiSinon from 'sinon-chai';
 import sinon from 'sinon';
+import ActionBar from '../../../../main/editor/components/action/ActionBar';
 import { mountWithMuiContext, simulateTouchTap } from '../../../utils/TestUtils';
 
 chai.should();

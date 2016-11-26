@@ -22,7 +22,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot', 'babel-loader']
+                loaders: ['babel-loader']
             },
             { test: /\.css$/, exclude: /\.global\.css$/, loader: 'style-loader!css-loader?modules&camelCase' },
             { test: /\.global\.css$/, loader: 'style-loader!css-loader' }

@@ -31,10 +31,10 @@ class LinkControl extends React.Component {
             showLinkError: false
         };
         this.toggleLink = () => this._toggleLink();
-        this.setUrl = (e) => this._setUrl(e);
+        this.setUrl = e => this._setUrl(e);
         this.handleOpen = () => this._handleOpen();
         this.handleClose = () => this._handleClose();
-        this.confirmLink = (e) => this._confirmLink(e);
+        this.confirmLink = e => this._confirmLink(e);
         this.closeLinkError = () => this._closeLinkError();
     }
 
@@ -152,6 +152,7 @@ class LinkControl extends React.Component {
 }
 
 LinkControl.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     editorState: React.PropTypes.object.isRequired,
     onToggle: React.PropTypes.func
 };

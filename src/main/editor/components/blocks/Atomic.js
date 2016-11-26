@@ -13,8 +13,8 @@ class AtomicBlock extends React.Component {
     constructor(props) {
         super(props);
         this.onResize = (width, height) => this._onResize(width, height);
-        this.onAlign = (alignment) => this._onAlign(alignment);
-        this.onDragStart = (e) => this._onDragStart(e);
+        this.onAlign = alignment => this._onAlign(alignment);
+        this.onDragStart = e => this._onDragStart(e);
     }
 
     componentDidMount() {
@@ -90,8 +90,10 @@ class AtomicBlock extends React.Component {
 }
 
 AtomicBlock.propTypes = {
+    /* eslint-disable react/forbid-prop-types */
     block: React.PropTypes.object.isRequired,
     blockProps: React.PropTypes.object.isRequired
+    /* eslint-enable react/forbid-prop-types */
 };
 
 export default AtomicBlock;

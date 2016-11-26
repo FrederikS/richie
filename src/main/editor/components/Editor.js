@@ -21,23 +21,24 @@ class MyEditor extends React.Component {
     constructor(props) {
         super(props);
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this._onChange(editorState);
-        this.handleKeyCommand = (command) => this._handleKeyCommand(command);
-        this.toggleBlockType = (type) => this._toggleBlockType(type);
-        this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
-        this.toggleLink = (linkEntity) => this._toggleLink(linkEntity);
-        this.addImage = (imageEntity) => this._addImage(imageEntity);
+        this.onChange = editorState => this._onChange(editorState);
+        this.handleKeyCommand = command => this._handleKeyCommand(command);
+        this.toggleBlockType = type => this._toggleBlockType(type);
+        this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+        this.toggleLink = linkEntity => this._toggleLink(linkEntity);
+        this.addImage = imageEntity => this._addImage(imageEntity);
         this.handleDrop = (selectionState, dataTransfer) => this._handleDrop(
             selectionState,
             dataTransfer
         );
-        this.getBlockRenderer = (block) => this._getBlockRenderer(block);
+        this.getBlockRenderer = block => this._getBlockRenderer(block);
 
         this.state = {
             editorState: EditorState.createEmpty(new CompositeDecorator([LinkDecorator]))
         };
     }
 
+    // eslint-disable-next-line class-methods-use-this
     _getBlockRenderer(block) {
         switch (block.getType()) {
             case 'atomic':
@@ -131,10 +132,11 @@ class MyEditor extends React.Component {
                 />
                 <LinkControl editorState={editorState} onToggle={this.toggleLink} />
                 <ImageControl onImageAdd={this.addImage} handleImageFile={handleImageFile} />
+                {/* eslint-disable jsx-a11y/no-static-element-interactions */}
                 <div
                   className={styles.editor}
                   onClick={this.focus}
-                  onDragOver={(e) => e.preventDefault()}
+                  onDragOver={e => e.preventDefault()}
                 >
                     <Editor
                       blockRendererFn={this.getBlockRenderer}
@@ -147,6 +149,7 @@ class MyEditor extends React.Component {
                       handleDrop={this.handleDrop}
                     />
                 </div>
+                {/* eslint-enable jsx-a11y/no-static-element-interactions */}
             </div>
         );
     }

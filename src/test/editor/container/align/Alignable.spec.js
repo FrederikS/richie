@@ -1,12 +1,12 @@
 import React from 'react';
 import chai from 'chai';
 import { shallow } from 'enzyme';
-import Alignable from '../../../../main/editor/container/align/Alignable';
-import ActionBar from '../../../../main/editor/components/action/ActionBar';
 import chaiEnzyme from 'chai-enzyme';
-import { mountWithMuiContext, simulateTouchTap } from '../../../utils/TestUtils';
 import chaiSinon from 'sinon-chai';
 import sinon from 'sinon';
+import Alignable from '../../../../main/editor/container/align/Alignable';
+import ActionBar from '../../../../main/editor/components/action/ActionBar';
+import { mountWithMuiContext, simulateTouchTap } from '../../../utils/TestUtils';
 
 chai.should();
 chai.use(chaiEnzyme());
@@ -44,6 +44,7 @@ describe('<Alignable />', () => {
         const alignable = mountWithMuiContext(<Alignable><div>foo</div></Alignable>);
 
         alignable.should.contain(
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div onClick={alignable.instance().showActionBar}>
                 <div>foo</div>
             </div>

@@ -27,6 +27,7 @@ const InlineStyleControls = (props) => {
 };
 
 InlineStyleControls.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     currentStyle: React.PropTypes.object.isRequired,
     onToggle: React.PropTypes.func
 };

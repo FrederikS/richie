@@ -46,9 +46,11 @@ class Alignable extends React.Component {
                   onCenterClicked={() => this.props.onAlign('center')}
                   onRightClicked={() => this.props.onAlign('right')}
                 /> : false}
+                {/* eslint-disable jsx-a11y/no-static-element-interactions */}
                 <div ref="alignable" onClick={this.showActionBar}>
                     {this.props.children}
                 </div>
+                {/* eslint-enable jsx-a11y/no-static-element-interactions */}
             </div>
         );
     }

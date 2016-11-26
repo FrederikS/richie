@@ -8,7 +8,7 @@ import Atomic from '../blocks/Atomic';
 class Preview extends React.Component {
     constructor(props) {
         super(props);
-        this.getBlockRenderer = (block) => this._getBlockRenderer(block);
+        this.getBlockRenderer = block => this._getBlockRenderer(block);
         this.decorator = new CompositeDecorator([LinkDecorator]);
         const editorState = props.rawContent ?
             EditorState.createWithContent(convertFromRaw(props.rawContent), this.decorator) :
@@ -25,6 +25,7 @@ class Preview extends React.Component {
         }
     }
 
+    // eslint-disable-next-line class-methods-use-this
     _getBlockRenderer(block) {
         switch (block.getType()) {
             case 'atomic':
@@ -54,6 +55,7 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     rawContent: React.PropTypes.object
 };
 
